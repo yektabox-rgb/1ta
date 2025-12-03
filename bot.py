@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 BOT_TOKEN = '8591678543:AAEgQCUWxvG83VOSJFq01Xe_BTq6IqxWZJg'
 
-OPENROUTER_API_KEY = 'کلیدت رو اینجا بذار'  # همون که از openrouter.ai گرفتی
+OPENROUTER_API_KEY = 'کلید واقعی OpenRouterت رو اینجا بذار'  # مثلاً sk-or-v1-abc123...
 
 OPENROUTER_BASE = 'https://openrouter.ai/api/v1/chat/completions'
 
@@ -22,19 +22,19 @@ async def analyze_chart(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     
     await update.message.reply_text('در حال تحلیل با ۳ هوش مصنوعی... (تکنیکال + سنتیمنت + محاسبات)')
     
-    # ۱. تکنیکال با Llama
+    # ۱. تکنیکال با Llama (مدل رایگان جدید)
     prompt_tech = "تحلیل تکنیکال چارت بیت‌کوین: الگوها، سطوح حمایت/مقاومت، RSI، پیش‌بینی روند."
-    response_tech = call_openrouter('meta-llama/llama-3.1-70b-instruct:free', prompt_tech)
+    response_tech = call_openrouter('meta-llama/llama-4-maverick', prompt_tech)
     
-    # ۲. سنتیمنت با Grok
+    # ۲. سنتیمنت با Mistral (جایگزین Grok، رایگان و سریع)
     prompt_sent = "سنتیمنت X و آنچین بیت‌کوین: اخبار اخیر، جریان whale، funding rate."
-    response_sent = call_openrouter('xai/grok-3-mini:free', prompt_sent)
+    response_sent = call_openrouter('mistralai/mistral-small-3.1-24b-instruct', prompt_sent)
     
-    # ۳. محاسبات با Qwen
+    # ۳. محاسبات با DeepSeek (مدل رایگان جدید)
     prompt_calc = "محاسبات معامله: TP/SL/RR بر اساس سطوح ۹۳k حمایت و ۹۶k مقاومت، بک‌تست ساده."
-    response_calc = call_openrouter('qwen/qwen-2.5-72b-instruct:free', prompt_calc)
+    response_calc = call_openrouter('deepseek/deepseek-v3-base', prompt_calc)
     
-    full_analysis = f"**تکنیکال (Llama):** {response_tech}\n\n**سنتیمنت (Grok):** {response_sent}\n\n**محاسبات (Qwen):** {response_calc}"
+    full_analysis = f"**تکنیکال (Llama):** {response_tech}\n\n**سنتیمنت (Mistral):** {response_sent}\n\n**محاسبات (DeepSeek):** {response_calc}"
     
     await update.message.reply_text(full_analysis)
 
