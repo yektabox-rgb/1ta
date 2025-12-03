@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 BOT_TOKEN = '8591678543:AAEgQCUWxvG83VOSJFq01Xe_BTq6IqxWZJg'
 
-OPENROUTER_API_KEY = 'کلید واقعی OpenRouterت رو اینجا بذار'  # مثلاً sk-or-v1-abc123...
+OPENROUTER_API_KEY = 'sk-or-v1-0d7...2fb'  # کلید کاملت رو بذار
 
 OPENROUTER_BASE = 'https://openrouter.ai/api/v1/chat/completions'
 
