@@ -22,17 +22,14 @@ async def analyze_chart(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     
     await update.message.reply_text('در حال تحلیل با ۳ هوش مصنوعی... (تکنیکال + سنتیمنت + محاسبات)')
     
-    # ۱. تکنیکال با Llama (مدل رایگان جدید)
-    prompt_tech = "تحلیل تکنیکال چارت بیت‌کوین: الگوها، سطوح حمایت/مقاومت، RSI، پیش‌بینی روند."
-    response_tech = call_openrouter('meta-llama/llama-4-maverick', prompt_tech)
-    
-    # ۲. سنتیمنت با Mistral (جایگزین Grok، رایگان و سریع)
-    prompt_sent = "سنتیمنت X و آنچین بیت‌کوین: اخبار اخیر، جریان whale، funding rate."
-    response_sent = call_openrouter('mistralai/mistral-small-3.1-24b-instruct', prompt_sent)
-    
-    # ۳. محاسبات با DeepSeek (مدل رایگان جدید)
-    prompt_calc = "محاسبات معامله: TP/SL/RR بر اساس سطوح ۹۳k حمایت و ۹۶k مقاومت، بک‌تست ساده."
-    response_calc = call_openrouter('deepseek/deepseek-v3-base', prompt_calc)
+# ۱. تکنیکال با Llama (free جدید)
+response_tech = call_openrouter('meta-llama/llama-4-maverick:free', prompt_tech)
+
+# ۲. سنتیمنت با Grok (free)
+response_sent = call_openrouter('xai/grok-3-mini:free', prompt_sent)
+
+# ۳. محاسبات با DeepSeek (free)
+response_calc = call_openrouter('deepseek/deepseek-r1:free', prompt_calc)
     
     full_analysis = f"**تکنیکال (Llama):** {response_tech}\n\n**سنتیمنت (Mistral):** {response_sent}\n\n**محاسبات (DeepSeek):** {response_calc}"
     
