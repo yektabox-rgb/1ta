@@ -6,7 +6,7 @@ import requests
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-BOT_TOKEN = '8591678543:AAEgQCUWxvG83VOSJFq01Xe_BTq6IqxWZJg:AAHblahblah'
+BOT_TOKEN = '8591678543:AAEgQCUWxvG83VOSJFq01Xe_BTq6IqxWZJg'
 
 OPENROUTER_API_KEY = 'sk-or-v1-free'  # کلید رایگان
 
